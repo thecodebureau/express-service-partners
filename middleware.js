@@ -33,7 +33,7 @@ function getAll(req, res, next) {
 }
 
 function getPublished(req, res, next) {
-  Partner.find({ datePublished: { $ne: null } }).exec(function (err, partners) {
+  Partner.find({ datePublished: { $ne: null } }).sort({ priority: -1, 'name': 1 }).exec(function (err, partners) {
     if (err) return next(err);
 
     res.locals.partners = partners;
